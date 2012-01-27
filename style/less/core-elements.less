@@ -1,0 +1,437 @@
+/** ------------------------------------ !CORE ELEMENTS --------------------------------------------
+* These reusable mixins are meant to provide a templated or 'bootstraped' style to CSS element selectors. Each individual namespace should reflect an html tag, with the namespaces' methods being different versions or states of the tag. Core elements can and should incorperate core properties, and should always be secific to a HTML tag rather than a CSS property. Core element namespaces are intended to be used within LESS and not directly attached to the markup.
+
+TODO: Remove all theme vars from these mixins as they should always be passed as params from the layout. Add Init methods to abstract classes to allow for psudo class and event binding
+
+RULES:
+
+Abstract Classes
+- All variables must be passed through functions
+- No direct use of html elements
+- No use of psudo classes (should not assume that one wants to use an event or psudo class)
+
+Classes
+- All variables must be passed through functions
+- May use html elements directly
+- May use psudo classes, but not recomended
+
+*/
+
+/* !NAMESPACES FOR CSS ELEMENT SELECTORS */
+
+/*  !Button Abstract Class
+    Will style any element to be button
+    Always defaults to display inline, you can override this when extending the class for more specific uses such as in a form
+    
+    TODO: Add more methods, such as .secondary etc
+    
+ */
+
+#button {
+    .primary(@color:#fff, @border-radius:5px, @border-size:1px, @padding:8px, @gradient-highlight-stop:5%) {
+        color: lighten(@color, 60%);
+        #gradient > .vertical-three-colors(lighten(@color, 30%), @color, @gradient-highlight-stop, darken(@color, 15%));
+        #border > .radius(@border-radius, @border-radius, @border-radius, @border-radius);
+        border: @border-size solid;
+		border-color: darken(@color, 5%) @color darken(@color, 6%) @color;
+		display: inline;
+        float: none;
+        font-size: @core-font-size * .9;
+        font-weight: bold;
+        letter-spacing: 1px;
+        width: auto;
+        padding: @padding @padding*2;
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;
+        #shadow > .text(0,-1px,2px, darken(@color, 15%));
+        #shadow > .box(0, 1px, 2px, #999);
+        
+        .hover(@color:#fff) {
+            #gradient > .vertical-three-colors(lighten(@color, 40%), lighten(@color, 10%), 6%, darken(@color, 10%));
+        }
+        
+        .active() {
+            #shadow > .text(0,1px,2px, darken(@color, 20%));
+            #gradient > .vertical-three-colors(darken(@color, 10%), darken(@color, 5%), 96%, @color);
+        }
+        
+        .disabled(@color:#ccc) {
+            color: lighten(@color, 20%);
+            #shadow > .text.none;
+            #gradient > .vertical-three-colors.none;
+            background-color: @color;
+            border-color: @color;
+            #opacity(40);
+            cursor: default;
+            &.hover, &:hover {
+                background-color: @color;
+            }
+        }    
+    }
+    .secondary(@color:#ccc, @border-radius:5px, @border-size:1px, @padding:8px, @highlight-color: #aaa) {
+		border-color: lighten(@color, 10%) lighten(@color, 10%) lighten(@color, 8%) lighten(@color, 10%);
+        #button > .primary(@color, @border-radius);
+        color: @highlight-color;
+        #gradient > .vertical-three-colors(lighten(@color, 20%), lighten(@color, 15%), 40%, @color);
+        #shadow > .text(0,2px,1px, lighten(@color, 18%));
+        
+        .hover(@color:#ccc) {
+            #gradient > .vertical-three-colors(lighten(@color, 40%), lighten(@color, 20%), 30%, lighten(@color, 4%));
+        }
+        
+        .active() {
+            #gradient > .vertical-three-colors(lighten(@color, 5%), lighten(@color, 15%), 96%, lighten(@color, 20%));
+        }
+        
+        .disabled(@color:#ccc) {
+            color: lighten(@color, 20%);
+            #shadow > .text.none;
+            #gradient > .vertical-three-colors.none;
+            background-color: @color;
+            border-color: @color;
+            #opacity(40);
+            cursor: default;
+            &.hover, &:hover {
+                background-color: @color;
+            }
+        }
+    }
+    .tertiary(@color:#777, @border-radius:5px, @border-size:1px, @padding:8px, @highlight-color: #888) {
+        #button > .secondary(@color, @border-radius, @border-size, @padding, @highlight-color);
+        #shadow > .text (0, -1px, 1px, darken(@color, 15%));
+        color: lighten(@color, 40%);
+        border-color: darken(@color, 10%);
+        background: @color;
+        padding: 1px 0 0 0;
+        
+        .hover(@color:#ccc) {
+            #gradient > .vertical-three-colors(lighten(@color, 40%), lighten(@color, 20%), 30%, lighten(@color, 4%));
+        }
+        
+        .active() {
+            #gradient > .vertical-three-colors(lighten(@color, 5%), lighten(@color, 15%), 96%, lighten(@color, 20%));
+        }
+        
+        .disabled(@color:#ccc) {
+            color: lighten(@color, 20%);
+            #shadow > .text.none;
+            #gradient > .vertical-three-colors.none;
+            background-color: @color;
+            border-color: @color;
+            #opacity(40);
+            cursor: default;
+            &.hover, &:hover {
+                background-color: @color;
+            }
+        }
+    }
+}
+
+/*  !Input Abstract Class
+    Will style any element to be an input
+    Can be extended for more specific styling such as in a form
+    
+    TODO: Remove theme vars, as they should be passed in via the layout. Add more method types. Remove psudo classes
+    
+ */
+#input {
+    .text(@background:#fff, @border-size:1px, @border-radius:5px, @color:#777) {
+        background: @background;
+        border: none;
+        border: @border-size solid;
+        border-color: lighten(@color, 25%);
+        #border > .radius(@border-radius, @border-radius, @border-radius, @border-radius);
+        color: @color;
+        display: block;
+        margin-bottom: 17px;
+        outline: none;
+        padding:8px 0;
+        text-indent: 8px;
+        width: 100% - (@border-size/2);
+        #shadow > .box(0, 0, 2px, #E3E3E3, inset);
+        
+        .focus(@border-color:#3496ff, @color:#333) {
+            border-color: @border-color;
+            color: @color;
+            #shadow > .box(0, 0, 3px, #9ACBFF, inset);
+        }
+
+        .disabled(@color:#888) {
+            background: lighten(@color, 45%);
+            border-color: lighten(@color, 35%);
+            color: @color;
+        }
+    }
+    
+    .checkbox() {
+    }
+}
+
+/*  !List Abstract Class
+    TODO: need to revamp lists and nav mixins. Lists should account for all types of styled lists (horizontal, vertical, boxes, buttons). Navs should extend lists and account for anchor tags by moving base list styles to the anchor rather than the list item
+ */
+ #list {
+    .horizontal(@width:200px) {
+        li, dd, dt {
+            display: block;
+            float: left;
+            width: @width;
+        }
+	}
+	.vertical(@width:auto) {
+        #list > .horizontal(@arguments);
+        li, dd, dt {
+            float: left;
+            clear: both;
+        }
+	}
+	.inline {
+        li, dd, dt {
+            display: inline;
+            float: none;
+            width: auto;
+	   }
+	}
+	
+	.unordered(@list-style:none, @list-style-position:inside) {
+        list-style: @list-style;
+        list-style-position: @list-style-position;
+    }
+    
+    .ordered(@list-style:decimal, @list-style-position:inside) {
+        #list > .unordered(@arguments);
+    }
+ }
+
+/*  !Nav Class
+    
+ */
+#nav {
+    .primary(@width:100px) {
+        #list > .horizontal(@width);
+        overflow: visible;
+    }
+    .secondary(@width:100px, @color) {
+        #nav > .primary(@width);
+        ul {
+            border: 1px solid @color;
+            float: left;
+            position: relative;
+        }
+        li, dd, dt {
+            text-align: center;
+            border-left: 1px solid @color;
+            &:first-child {
+                border-left: 0;
+            }
+            a {
+                display: block;
+                padding: 10px;
+            }
+        }
+        .current(@color:#ccc) {
+            background: @color;
+            a {
+                color: lighten(@color, 70%);
+            }
+        }
+    }
+}
+
+/*  !Form Class
+    Extends base classes such as #button and #input, adding specific styles for use inside forms
+    
+    TODO: Remove theme vars, as they should be passed in via the layout. Add more method types
+    
+ */
+#form {
+    .primary(
+            @input-background:#fff, 
+            @input-border-size:1px,
+            @input-focus-border-color: #3496ff, 
+            @input-border-radius:5px, 
+            @input-color:#777,
+            @button-color1:#777, 
+            @button-color2:#0064CD) {
+        
+        //Target all Text inputs including passwords
+        input[type='text'], input[type='password'] { 
+            #input > .text(@input-background, @input-border-size, @input-border-radius, @input-color);
+            &:focus {
+                #input > .text.focus(@input-focus-border-color, darken(@input-color, 10%));
+            }
+            &[disabled='disabled'] {
+                #input > .text.disabled;
+            }
+        }
+        //Target all Button and Input type button
+        button, input[type='button'] {
+            #button > .primary(@button-color1);
+            &:hover {
+                #button > .primary.hover(@button-color1);
+            }
+            &:active {
+                #button > .primary.active(@button-color1);
+            }
+            &[disabled='disabled'] {
+                #button > .primary.disabled;
+            }
+        }
+        //Target all Button and Input type submit
+        button, input {
+            &[type='submit'] {
+                #button > .primary(@button-color2);
+                &:hover {
+                    #button > .primary.hover(@button-color2);
+                }
+                &:active {
+                    #button > .primary.active(@button-color2);
+                }
+            }
+        }
+        
+        select {
+            margin-bottom: @core-margin + 17;
+            width: 100% - .5px;
+        }
+        
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: @core-margin + 5;
+        }
+    }
+}
+
+//Table - Can break out into individual html element mixins, so that you can style any set of elements like a table
+#table {
+    .primary(
+        @table-head-background:none,
+        @table-cell-padding:4px,
+        @table-head-background-current:#ccc,
+        @table-border-color:#777,
+        @table-border-size:1px,
+        @table-row-hover-color:#D5F9FF) {
+        border-collapse: separate;
+        display: table;
+        text-align: left;
+        width: 100%;
+        thead {
+             tr {
+                th {
+            		background: @table-head-background;
+            		a {
+            			text-decoration: none;
+            			display: block;
+            			padding: @table-cell-padding;
+            		}
+            		&.current {
+            			background: @table-head-background-current;
+            		}
+            		&.desc {
+            			a {
+            			}
+            		}
+            		&.asc {
+            			a {
+            			}
+            		}
+            	}
+             }
+        }
+    	tbody {
+    		tr {
+    			td {
+                    border-top: @table-border-size solid lighten(@table-border-color, 40%);
+                    padding: @table-cell-padding;
+        			vertical-align: middle;
+        			img {
+        				vertical-align: middle;
+        			}
+        			ol, ul {
+                        padding: 0;
+                        margin: 0;
+                        list-style-position: inside;
+                    }
+        		}
+        		&:hover, &.hover {
+        			td {
+        				background: @table-row-hover-color;
+        			}
+        		}
+        		&.selected {
+    				td {
+    					background: darken(@table-row-hover-color, 10%);
+    				}
+    			}
+    		}
+    	}
+    }
+    .secondary(
+        @table-head-background:none,
+        @table-cell-padding:4px,
+        @table-head-background-current:#ccc,
+        @table-border-color:#777,
+        @table-border-size:1px,
+        @table-row-hover-color:#D5F9FF) {
+        
+        #table > .primary(@arguments);
+        
+        border: @table-border-size solid @table-border-color;
+        thead tr th {
+            border-left: @table-border-size solid @table-border-color;
+            &:first-child {
+                border-left: none;
+            }
+            a {
+                padding: @table-cell-padding;
+            }
+        }
+        tbody tr td {
+            border-left: @table-border-size solid @table-border-color;
+            padding: @table-cell-padding;
+            &:first-child {
+                border-left: none;
+            }
+        }
+    }
+    .striped(@color: #FAFAFA) {
+        &:nth-child(2n+1) {
+            background: @color;
+        }
+    }
+}
+
+/*  !Shape Class
+    Used to render shapes using CSS
+    
+    TODO: Abstract and add other shapes
+    
+ */
+#shape {
+    .triangle-abstract(
+        @border-top-size: 8px,
+        @border-top-color: red,
+        @border-right-size:8px,
+        @border-right-color: transparent,
+        @border-bottom-size:8px,
+        @border-bottom-color:transparent,
+        @border-left-size:8px,
+        @border-left-color:transparent){
+         
+        content:""; 
+        position: absolute; 
+        border-top: @border-top-size solid @border-top-color;  
+        border-left: @border-left-size solid @border-left-color; 
+        border-bottom: @border-bottom-size solid @border-bottom-color; 
+        border-right: @border-right-size solid @border-right-color; 
+        z-index: 1;
+    }
+    .triangle-up(@size:8px, @color: red) {
+        #shape > .triangle-abstract(@size, transparent, @size, transparent, @size, @color, @size, transparent);
+    }
+    .triangle-down(@size:8px, @color: red) {
+        #shape > .triangle-abstract(@size, @color, @size, transparent, @size, transparent, @size, transparent);
+    }
+}

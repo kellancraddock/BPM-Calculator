@@ -1,0 +1,53 @@
+@charset "utf-8";
+/**
+* ------------------------------------ !MASTER STYLES ------------------------------------
+* This stylesheet serves as the foundation for all styles within this application
+* CORE VARIABLES: used for controlling individual elements in a theme
+* GRID: semantic grid system
+* CORE PROPERTIES: used to define complext CSS properties and as a shiv for cross-browser propertary rules
+* CORE ELEMENTS: Reusable namespace mixins implimented with raw css rules and CORE PROPERTIES.
+* CORE LAYOUT: Main area for page layout and style. Should rely heavily on GRID, CORE PROPERTIES and ELEMENTS
+*
+* AUTHOR: Kellan Craddock (kcraddock@cmdagency.com)
+* AUTHOR: Jessica Tsuji (jtsuji@cmdagency.com)
+*
+* IMPORTANT! - These styles were originally written in LESS and compliled with the LESS.app. All modifications should be done in the existing .less file, not the .css file
+* 
+*TODO: remove theme specific vars from core-elements.less and pass them as params via core layout.
+*/
+
+/**
+* ------------------------------------ !IMPORTS ------------------------------------
+*/
+
+@import 'normalize.less';
+@import 'core-variables.less';
+@import 'core-properties.less';
+@import 'core-elements.less';
+@import 'grid.less';
+
+/**
+* ------------------------------------ !GRID VARIABLES ------------------------------
+*/
+
+@columns: 12;
+@column-width: 60;
+@gutter-width: 0;
+@total-width: 100%; // Switch from pixels to percentages
+@content-width: 90%;
+
+
+/**
+* ------------------------------------ !CORE LAYOUTS ---------------------------------
+*/
+
+html {
+    
+    ::-moz-selection { background: @core-color-pink-2; }
+    ::selection { background: @core-color-pink-2; }
+}
+
+/**
+* ------------------------------------ !MEDIA QUERY LAYOUT ---------------------------------
+*/
+@import 'media.less';

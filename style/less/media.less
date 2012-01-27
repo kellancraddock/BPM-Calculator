@@ -1,0 +1,485 @@
+/* ==|== media queries ======================================================
+   PLACEHOLDER Media Queries for Responsive Design.
+   These override the primary ('mobile first') styles
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 480px) {
+  /* Style adjustments for viewports 480px and over go here */
+
+    html {
+        body {
+            h3 {
+                font-size: @core-font-size * 1.2;
+                font-weight: 400;
+            }
+            .content {
+                > section {
+                    > article {
+                        section {
+                            &#location {
+                                h3 {
+                                    span {
+                                        em {
+                                            display: inline;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+  /* Style adjustments for viewports 768px and over go here */
+    
+    html {
+        
+        body {
+            .header {
+                header {
+                    h1 {
+                        .column(6);
+                        font-size: @core-font-size * 1.8;
+                        margin-top: 14px;
+                    }
+                    nav {
+                        .column(6);
+                        ul {
+                            li {
+                                &:first-child {
+                                    display: inline;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .subheader {
+                section {
+                    h2 {
+                        font-size:  @core-font-size * 3;
+                        em {
+                            font-size: @core-font-size * 6;
+                        }
+                    }
+                    
+                    nav {
+                        ul {
+                            display: inline-block;
+                            width: auto;
+                            li {
+                                display: list-item;
+                                float: left;
+                                list-style: disc inside;
+                                padding-left: 12px;
+                                width: auto;
+                                &:first-child {
+                                    list-style: none;
+                                    padding-left: 0;
+                                    a,
+                                    a:visited,
+                                    a:hover, 
+                                    a:active,
+                                    a:focus { 
+                                        margin-left: 0;
+                                    }
+                                }
+                                &:last-child {
+                                }
+                                a,
+                                a:visited,
+                                a:hover, 
+                                a:active,
+                                a:focus { 
+                                    margin-left: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .content {
+                > section {
+                   > article {
+                        section {
+                            > article {
+                                padding: 0 60px;
+                            }
+                            &#location {
+                                ul {
+                                    
+                                    li {
+                                        .row(12);
+                                        overflow: visible;
+                                        margin-bottom: 10px;
+                                        &:first-child {
+                                            figure {
+                                                float: left;
+                                                margin-left: 0;
+                                                margin-right: 6%;
+                                            }
+                                        }
+                                        figure {
+                                            .column(4.25);
+                                            overflow: visible;
+                                            float: right;
+                                            margin-bottom: 10px;
+                                            margin-left: 6%;
+                                            > img {
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            &#rsvp {
+                                figure {
+                                    .column(4.25);
+                                }
+                                form {
+                                    .column(7);
+                                    float: right;
+                                    overflow: visible;
+                                }
+                            }
+                            &#guestbook {
+                                article {
+                                    form {
+                                        dl {
+                                            #message-element{
+                                                .column(7);
+                                                textarea {
+                                                }
+                                            }
+                                            #message-label {
+                                                .column(4.25);
+                                                float: right;
+                                            }
+                                            input {
+                                                .column(4.25);
+                                                bottom: 20px;
+                                                padding: 12px 16px;
+                                                position: absolute;
+                                                right: 0;
+                                            }
+                                        }
+                                    }
+                                    ul {
+                                        li {
+                                            .row(12);
+                                            padding: 15px 0;
+                                            overflow: visible;
+                                            > p {
+                                                .column(4.25);
+                                                float: right;
+                                            }
+                                            blockquote {
+                                                .column(7);
+                                                margin: 0 0 15px;
+                                                overflow: visible;
+                                                &:before { 
+                                                    left: inherit; 
+                                                    right: -14px;
+                                                    top: 18px; 
+                                                    border-left: 14px solid #f4f4f4; 
+                                                    border-bottom: 14px solid transparent; 
+                                                    border-right: 0px solid transparent;
+                                                    border-top: 14px solid transparent;
+                                                }
+                                                &:after { 
+                                                    left: inherit; 
+                                                    top: 16px;
+                                                    right: -16px;
+                                                    border-left: 16px solid #e3e3e3; 
+                                                    border-bottom: 16px solid transparent; 
+                                                    border-right: 0px solid transparent;
+                                                    border-top: 16px solid transparent;
+                                                }
+                                                .delete {
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } 
+                        }
+                    }
+                }
+            }            
+            &.welcome {
+                .subheader section h2 {
+                    background: url("../../img/subheader-ornamentation-top.png") no-repeat scroll center top transparent;
+                    padding-top: 70px;
+                    margin-top: 40px;
+                    font-size: @core-font-size + 3;
+                    text-align: center;
+                    em {
+                        font-size: @core-font-size + 12;
+                    }
+                }
+                form {
+                    background: url("../../img/subheader-ornamentation-bottom.png") no-repeat scroll center bottom transparent;
+                    padding-bottom: 70px;
+                    fieldset {
+                        .column(6);
+                        padding: 20px;
+                        display: block;
+                        margin: 0 auto;
+                        margin-top: 20px;
+                        float: none;
+                    }
+                }
+                .viewports {
+                    .column(6);
+                    background: lighten(@core-color-teal-2, 32%);
+                    border: 1px dotted @core-color-teal-1;
+                    display: block;
+                    float: none;
+                    margin: 0 auto;
+                    margin-top: 20px;
+                    p {
+                        background-position: 10px center;
+                        padding: 10px;
+                        padding-left: 100px;
+                    }
+                }
+            }
+            &.admin, &.party {
+                > .content {
+                    > section {
+                        .overview {
+                            > li {
+                                .column(6, 12, 10);
+                                &.event.both {
+                                    .column(12, 12, 10);
+                                }
+                            }
+                        }
+                        form {
+                            &.search {
+                                .column(4);
+                                display: block;
+                                float: right;
+                            }
+                        }
+                        nav {
+                            .column(4);
+                        }
+                    }
+                }  
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+  /* Style adjustments for viewports 1024px and over go here */
+    
+    html {
+        body {
+            .subheader {
+                section {
+                    nav {
+                        ul {
+                            li {
+                                padding-left: 30px;
+                                &:first-child {
+                                    a,
+                                    a:visited,
+                                    a:hover, 
+                                    a:active,
+                                    a:focus { 
+                                    }
+                                }
+                                &:last-child {
+                                }
+                                a,
+                                a:visited,
+                                a:hover, 
+                                a:active,
+                                a:focus { 
+                                    margin-left: 23px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .content {
+                > section {
+                    > article {
+                        .column(8, 12, 20);
+                    }
+                    aside {
+                        color: @core-color-gray-4;
+                        .column(4, 12, 20);
+                        overflow: visible;
+                        > section {
+                            h3 {
+                                background: transparent url(../../img/rsvp-ornamentation-top.png) bottom center repeat-x;
+                                color: @core-color-gray-4;
+                                font-size: @core-font-size * 2;
+                                height: 47px;
+                                padding: 0;
+                                text-align: left;
+                                span {
+                                    background: transparent url(../../img/logo-heart-gray.png) center right no-repeat;
+                                    height: 44px;
+                                    line-height: 47px;
+                                    padding: 0;
+                                    text-align: left;
+                                }
+                            }
+                            > article {
+                                padding: 0;
+                            }
+                            &#about {
+                                > article {
+                                    > ul {
+                                        li {
+                                            figure {
+                                                bottom: auto;
+                                                margin-bottom: 0;
+                                                margin-right: 30px;
+                                                margin-top: -116px;
+                                                top: 100%;
+                                                &:before { 
+                                                    bottom: 0;
+                                                    right: -14px; 
+                                                    top: 22px; 
+                                                    border-bottom: 14px solid transparent; 
+                                                    border-left: 14px solid #4f4d4f; 
+                                                    border-top: 14px solid transparent; 
+                                                    border-right: none;
+                                                }
+                                                &:after {  
+                                                    bottom: 0;
+                                                    right: -16px; 
+                                                    top: 20px; 
+                                                    border-bottom: 16px solid transparent; 
+                                                    border-left: 16px solid #302f30; 
+                                                    border-top: 16px solid transparent; 
+                                                    border-right: none;
+                                                }
+                                            }
+                                        }
+                                        > li {
+                                            &.individuals {
+                                                ul {
+                                                    li {
+                                                        &:first-child {
+                                                            figure {
+                                                                margin-right: 30px;
+                                                                &:before {
+                                                                    right: -14px;
+                                                                }
+                                                                &:after {
+                                                                    right: -16px;
+                                                                }
+                                                            }
+                                                        }
+                                                        figure {
+                                                            margin-right: 30px;
+                                                            &:before {
+                                                                right: -14px;
+                                                            }
+                                                            &:after {
+                                                                right: -16px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                &:first-child {
+                                                    ul {
+                                                        li {
+                                                            figure {
+                                                                margin-bottom: 0;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                &.join {
+                                                    ul {
+                                                        li {
+                                                            figure {
+                                                                margin-top: -100px;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            &.end {
+                                                figure {
+                                                    margin-right: 50px;
+                                                    margin-top: -90px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.welcome {
+                form {
+                    fieldset {
+                        .column(3);
+                        padding: 20px;
+                        display: block;
+                        margin: 0 auto;
+                        margin-top: 20px;
+                        float: none;
+                    }
+                }
+                .viewports {
+                    .column(3);
+                    display: block;
+                    float: none;
+                    margin: 0 auto;
+                    margin-top: 20px;
+                }
+            }
+            &.admin, &.party {
+                > .content {
+                    > section {
+                        .overview {
+                            > li {
+                                .column(4.75, 12, 10);
+                                &.event.both {
+                                    .column(2.5, 12, 10);
+                                }
+                            }
+                        }
+                    }
+                }  
+            }
+        }
+    }
+}
+
+
+/* ==|== print styles =======================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+ 
+@media print {
+  * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } /* Black prints faster: h5bp.com/s */
+  a, a:visited { text-decoration: underline; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  thead { display: table-header-group; } /* h5bp.com/t */
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page { margin: 0.5cm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
