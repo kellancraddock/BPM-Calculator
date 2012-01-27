@@ -42,7 +42,27 @@
 */
 
 html {
+    color: @core-color-gray-1;
+    min-height: 100%;
     
+    h1, h2, h3, h4, h5, h6 {
+        font-family: @core-font-stack-headline;
+        font-weight: 400;
+    }
+    h1 { font-size: @core-font-size * 3.25 }
+    h2 { font-size: @core-font-size * 2.5 }
+    h3 { font-size: @core-font-size * 1.75 }
+    h4 { font-size: @core-font-size * 1.35 }
+    h5 { font-size: @core-font-size * 1.25 }
+    h6 { font-size: @core-font-size * 1 }
+    
+    h1 {
+        text-align: center;
+        span {
+            font-size: @core-font-size * 5;
+            display: block;
+        }
+    }
     ::-moz-selection { background: @core-color-pink-2; }
     ::selection { background: @core-color-pink-2; }
 }
