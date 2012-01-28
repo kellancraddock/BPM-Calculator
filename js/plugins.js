@@ -51,7 +51,7 @@ function BPM() {
             
             timeout = setTimeout(function() {
                 self.degrade();
-            }, 5000);
+            }, (bpm/beats.length)*200);
         });
         
         outputInterval = setInterval(function() {
@@ -62,11 +62,13 @@ function BPM() {
     this.degrade = function() {
     
         var date = new Date();
-        beats = [{'time': date.getTime(), 'frequency': 0}];
+        //beats = [{'time': date.getTime(), 'frequency': 0}];
         
         degradeInterval = setInterval(function() {
+            beats.pop();
             if (bpm <= 10) {
                 bpm = 0;
+                beats = [{'time': date.getTime(), 'frequency': 0}];
                 clearInterval(degradeInterval);
                 self.setOutput(bpm);
             } else { 
