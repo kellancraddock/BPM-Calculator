@@ -46,6 +46,7 @@ html {
     overflow-y: visible;
     
     body {
+        #gradient > .radial(#fff, @core-color-gray-6);
         color: @core-color-gray-1;
         min-height: 100%;
         
@@ -61,9 +62,14 @@ html {
         h6 { font-size: @core-font-size * 1 }
         
         h1 {
+            color: @core-color-gray-5;
             text-align: center;
+            font-size: @core-font-size * 2.5;
             span {
-                font-size: @core-font-size * 5;
+                color: @core-color-gray-3;
+                font-weight: 700;
+                #shadow > .text();
+                font-size: @core-font-size * 8;
                 display: block;
             }
         }
