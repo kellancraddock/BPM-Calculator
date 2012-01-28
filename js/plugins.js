@@ -39,7 +39,7 @@ function BPM() {
                 beats.shift();
             var date = new Date();  
             time = date.getTime();
-            console.log(beats);
+
             beats.push({'time': time, 'frequency': time - beats[beats.length-1].time});
             
             var totalFrequency = 0;
