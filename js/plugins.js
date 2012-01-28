@@ -17,3 +17,68 @@ window.log = function(){
 
 
 // place any jQuery/helper plugins in here, instead of separate, slower script files.
+function BPM() {
+    var self = this;
+    var $output = $('h1 span');
+    var date = new Date();
+    var beats = [{'time': date.getTime(), 'frequency': 0}];
+    var time;
+    var bpm = 0;
+    
+    var outputInterval;
+    var degradeInterval;
+    var timeout;
+    
+    this.construct = function() {
+        $('body').bind('click touchend', function() {
+            
+            clearTimeout(timeout);
+            clearInterval(degradeInterval);
+            
+            if (beats.length >= 20)
+                beats.shift();
+            var date = new Date();  
+            time = date.getTime();
+            console.log(beats);
+            beats.push({'time': time, 'frequency': time - beats[beats.length-1].time});
+            
+            var totalFrequency = 0;
+            $.each(beats, function() {
+                totalFrequency += this.frequency;
+            });
+            
+            bpm = Math.round((60000*beats.length)/totalFrequency);
+            
+            timeout = setTimeout(function() {
+                self.degrade();
+            }, 5000);
+        });
+        
+        outputInterval = setInterval(function() {
+            self.setOutput(bpm);
+        }, 100);
+    };
+    
+    this.degrade = function() {
+    
+        var date = new Date();
+        beats = [{'time': date.getTime(), 'frequency': 0}];
+        
+        degradeInterval = setInterval(function() {
+            if (bpm <= 10) {
+                bpm = 0;
+                clearInterval(degradeInterval);
+                self.setOutput(bpm);
+            } else { 
+                bpm = bpm-10;
+                self.setOutput(bpm);
+            }
+        }, 500);
+    }
+    
+    this.setOutput = function(output) {
+        $output.text(output);
+    }
+    
+    this.construct();
+}
