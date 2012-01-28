@@ -30,7 +30,7 @@ function BPM() {
     var timeout;
     
     this.construct = function() {
-        $('body').bind('click touchend', function() {
+        $('body').bind('click touchstart', function() {
             
             clearTimeout(timeout);
             clearInterval(degradeInterval);
